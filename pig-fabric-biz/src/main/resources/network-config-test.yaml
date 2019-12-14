@@ -1,0 +1,143 @@
+---
+name: "Test"
+
+version: 1.0.0
+
+client:
+  organization: Org1
+
+  credentialStore:
+    path: "/tmp/hfc-kvs"
+
+    cryptoStore:
+      path: "/tmp/hfc-cvs"
+
+    wallet: wallet-name
+
+channels:
+  mychannel:
+    orderers:
+      - orderer.example.com
+    peers:
+      peer0.org1.example.com:
+        endorsingPeer: true
+        chaincodeQuery: true
+        ledgerQuery: true
+        eventSource: true
+
+organizations:
+  Org1:
+    mspid: Org1MSP
+
+    peers:
+      - peer0.org1.example.com
+
+    certificateAuthorities:
+      - ca.example.com
+
+    adminPrivateKey:
+      pem: |
+            -----BEGIN PRIVATE KEY-----
+            MIGHAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBG0wawIBAQQgZUk7QW1hW4TYam2d
+            1hkr1qxKt8DHoZwIzYowvWukBk+hRANCAASbDFfOmeX+lO+bL5OxDuqzOfXUkuYs
+            lAO5NyocLwhkQ+iCplCxjEiOpaK9vaDLN3dYLOy0pGiu5Jj6uNfr2B6w
+            -----END PRIVATE KEY-----
+
+    signedCert:
+      pem: |
+            -----BEGIN CERTIFICATE-----
+            MIICGDCCAb+gAwIBAgIQTHoY+TeKZa262Adm5UE4djAKBggqhkjOPQQDAjBzMQsw
+            CQYDVQQGEwJVUzETMBEGA1UECBMKQ2FsaWZvcm5pYTEWMBQGA1UEBxMNU2FuIEZy
+            YW5jaXNjbzEZMBcGA1UEChMQb3JnMS5leGFtcGxlLmNvbTEcMBoGA1UEAxMTY2Eu
+            b3JnMS5leGFtcGxlLmNvbTAeFw0xODA3MTgxMTM4MzFaFw0yODA3MTUxMTM4MzFa
+            MFsxCzAJBgNVBAYTAlVTMRMwEQYDVQQIEwpDYWxpZm9ybmlhMRYwFAYDVQQHEw1T
+            YW4gRnJhbmNpc2NvMR8wHQYDVQQDDBZBZG1pbkBvcmcxLmV4YW1wbGUuY29tMFkw
+            EwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEmwxXzpnl/pTvmy+TsQ7qszn11JLmLJQD
+            uTcqHC8IZEPogqZQsYxIjqWivb2gyzd3WCzstKRoruSY+rjX69gesKNNMEswDgYD
+            VR0PAQH/BAQDAgeAMAwGA1UdEwEB/wQCMAAwKwYDVR0jBCQwIoAg4X5BOST2GhDe
+            xgfnT888I6Z3S//oYY3J29tPlAOd28swCgYIKoZIzj0EAwIDRwAwRAIgRxWuR+23
+            rI4RDacFtdqc5xWdVV5Evqufky38LIyDlGMCIG6UBoBwPtqkrJ46plJOyZjsEQS8
+            oGr7eucW1Qz9vZu8
+            -----END CERTIFICATE-----
+
+orderers:
+  orderer.example.com:
+    url: grpc://192.168.8.138:7050
+    grpcOptions:
+      grpc-max-send-message-length: 15
+      grpc.keepalive_time_ms: 360000
+      grpc.keepalive_timeout_ms: 180000
+    tlsCACerts:
+      pem: |
+            -----BEGIN CERTIFICATE-----
+            MIICNTCCAdugAwIBAgIQch7M5UExLoxrj2RjHNymEjAKBggqhkjOPQQDAjBsMQsw
+            CQYDVQQGEwJVUzETMBEGA1UECBMKQ2FsaWZvcm5pYTEWMBQGA1UEBxMNU2FuIEZy
+            YW5jaXNjbzEUMBIGA1UEChMLZXhhbXBsZS5jb20xGjAYBgNVBAMTEXRsc2NhLmV4
+            YW1wbGUuY29tMB4XDTE4MDcxODExMzgzMVoXDTI4MDcxNTExMzgzMVowbDELMAkG
+            A1UEBhMCVVMxEzARBgNVBAgTCkNhbGlmb3JuaWExFjAUBgNVBAcTDVNhbiBGcmFu
+            Y2lzY28xFDASBgNVBAoTC2V4YW1wbGUuY29tMRowGAYDVQQDExF0bHNjYS5leGFt
+            cGxlLmNvbTBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABHkyylRXwObZa0VpXjRl
+            lwZ7T8r8I0aoih8g5RlEh3uu/IYF0UiocVIpobzsU1ccrPdt1wZPcL8oOmE7U7PO
+            dzujXzBdMA4GA1UdDwEB/wQEAwIBpjAPBgNVHSUECDAGBgRVHSUAMA8GA1UdEwEB
+            /wQFMAMBAf8wKQYDVR0OBCIEILk9OsqR/oa4GSZCu+NKS+kPa6EJ/BhpB3IvwuAm
+            JkQQMAoGCCqGSM49BAMCA0gAMEUCIQCtL9KVB9NtZpn9B7xo6cXAZQYUzPMGjF75
+            zebM/b1NigIgW7MWgFRfyy2Qsi1S1ZUvw0jV4cnV5o4GZRz8yenJ61U=
+            -----END CERTIFICATE-----
+
+peers:
+  peer0.org1.example.com:
+
+    url: grpc://192.168.8.138:7051
+
+    eventUrl: grpc://192.168.8.138:7053
+
+    grpcOptions:
+      grpc.http2.keepalive_time: 15
+
+    tlsCACerts:
+      pem: |
+            -----BEGIN CERTIFICATE-----
+            MIICSTCCAfCgAwIBAgIRAOoW3fK+wwIOUfLRYS+tCD4wCgYIKoZIzj0EAwIwdjEL
+            MAkGA1UEBhMCVVMxEzARBgNVBAgTCkNhbGlmb3JuaWExFjAUBgNVBAcTDVNhbiBG
+            cmFuY2lzY28xGTAXBgNVBAoTEG9yZzEuZXhhbXBsZS5jb20xHzAdBgNVBAMTFnRs
+            c2NhLm9yZzEuZXhhbXBsZS5jb20wHhcNMTgwNzE4MTEzODMxWhcNMjgwNzE1MTEz
+            ODMxWjB2MQswCQYDVQQGEwJVUzETMBEGA1UECBMKQ2FsaWZvcm5pYTEWMBQGA1UE
+            BxMNU2FuIEZyYW5jaXNjbzEZMBcGA1UEChMQb3JnMS5leGFtcGxlLmNvbTEfMB0G
+            A1UEAxMWdGxzY2Eub3JnMS5leGFtcGxlLmNvbTBZMBMGByqGSM49AgEGCCqGSM49
+            AwEHA0IABBwdRVIz3Yrm8KyXTyUnzf9RvwhRQpkhMC6KAOgfmuiIaLqmsWv402C7
+            SuKVFEMT79kzcvMrVZIWBsPslR9vJeujXzBdMA4GA1UdDwEB/wQEAwIBpjAPBgNV
+            HSUECDAGBgRVHSUAMA8GA1UdEwEB/wQFMAMBAf8wKQYDVR0OBCIEIL0BlABO49N8
+            agkgXtzcT+hRO0+2Pf0+qj8PhwQULr9gMAoGCCqGSM49BAMCA0cAMEQCIBVQUsuD
+            fC4IXzCFslpVOUTBJ4Siu7rxOhaJQQUenVMpAiAmxds1KBDILCPHUsLDhxXzuyj4
+            exkFEMQxHENMrz0+EQ==
+            -----END CERTIFICATE-----
+
+
+ 
+certificateAuthorities:
+  ca.example.com:
+    url: http://192.168.8.138:7054
+    httpOptions:
+      verify: true
+    tlsCACerts:
+      pem: |
+            -----BEGIN CERTIFICATE-----
+            MIICQzCCAeqgAwIBAgIRAIE36Kubv52q1XyzC4q6j94wCgYIKoZIzj0EAwIwczEL
+            MAkGA1UEBhMCVVMxEzARBgNVBAgTCkNhbGlmb3JuaWExFjAUBgNVBAcTDVNhbiBG
+            cmFuY2lzY28xGTAXBgNVBAoTEG9yZzEuZXhhbXBsZS5jb20xHDAaBgNVBAMTE2Nh
+            Lm9yZzEuZXhhbXBsZS5jb20wHhcNMTgwNzE4MTEzODMxWhcNMjgwNzE1MTEzODMx
+            WjBzMQswCQYDVQQGEwJVUzETMBEGA1UECBMKQ2FsaWZvcm5pYTEWMBQGA1UEBxMN
+            U2FuIEZyYW5jaXNjbzEZMBcGA1UEChMQb3JnMS5leGFtcGxlLmNvbTEcMBoGA1UE
+            AxMTY2Eub3JnMS5leGFtcGxlLmNvbTBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IA
+            BDPXJqR1URZD9jFeG3kw2zJIuBAJPUvSxsn6FzzF7LUI+1Ff+U22cItwTEejVXVh
+            yvU88P1dXA5kb6/WHYZBH3qjXzBdMA4GA1UdDwEB/wQEAwIBpjAPBgNVHSUECDAG
+            BgRVHSUAMA8GA1UdEwEB/wQFMAMBAf8wKQYDVR0OBCIEIOF+QTkk9hoQ3sYH50/P
+            PCOmd0v/6GGNydvbT5QDndvLMAoGCCqGSM49BAMCA0cAMEQCIH5ejZ6e2/Z9LyBE
+            Qlzgvu3mwHO4JeofZFeoK3GNpDRsAiAU715MxQTWCgP05UF0WA5M+iUrdfeK3uwu
+            UdJOM1rIuQ==
+            -----END CERTIFICATE-----
+    registrar: #single entitiy
+      enrollId: admin
+      enrollSecret: adminpw
+    # [Optional] The optional name of the CA.
+    caName: ca.example.com
